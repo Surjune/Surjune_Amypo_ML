@@ -1,77 +1,47 @@
-================================================================================
-STUDENT HANDS-ON ASSIGNMENT: REGRESSION MODEL – MEDICAL INSURANCE COST PREDICTION
-================================================================================
+Task 1 – Load the Dataset
+Loaded the insurance.csv dataset using pandas.
+The dataset has 1338 rows and 7 columns.
+Columns: age, sex, bmi, children, smoker, region, charges.
 
-DATASET: Medical Cost Personal Dataset (insurance.csv)
-MODEL: Linear Regression
-EVALUATION: 25 Marks
+Task 2 – Identify Variables
+Input feature (X): age
+Target variable (y): charges (the insurance price we want to predict)
 
---------------------------------------------------------------------------------
-TASK SUMMARY & RESULTS
---------------------------------------------------------------------------------
+Task 3 – Data Visualization
+Made a scatter plot of Age vs Charges.
+Observation: There is a clear upward trend showing that insurance charges increase as age increases. There are also 3 noticeable groups/bands in the data, which means things like smoking and BMI create big jumps in price.
 
-Task 1 – Load the Dataset:
-  - Loaded using Pandas.
-  - Shape: 1,338 rows, 7 columns.
-  - Columns: age, sex, bmi, children, smoker, region, charges.
+Task 4 – Split the Data
+Split the data 80% for training (1070 rows) and 20% for testing (268 rows) using train_test_split with random_state=42.
 
-Task 2 – Identify Variables:
-  - Target Variable (Y): charges (Continuous medical insurance charges in USD)
-  - Input Feature (X): age (for Simple Linear Regression)
-  - Additional Features: bmi, children, sex, smoker, region (for Multiple Linear Regression)
+Task 5 – Train the Model
+Trained a Linear Regression model on the training data.
+Slope: 240.59
+Intercept: 3606.05
+Equation: Charges = 240.59 * Age + 3606.05
+This means each year of age adds around 240 dollars to the annual insurance cost.
 
-Task 3 – Data Visualization:
-  - Scatter plot generated: Age vs. Insurance Charges.
-  - Observation: As age increases, baseline insurance charges increase steadily. Three distinct cost tiers are visible, corresponding to other risk factors (smoker status, BMI).
+Task 6 – Make Predictions
+Predicted the charges for the test set and compared them side-by-side with the actual values.
 
-Task 4 – Split the Data:
-  - 80% Training Data: 1,070 samples.
-  - 20% Testing Data: 268 samples.
-  - test_size=0.2, random_state=42.
+Task 7 – Evaluate the Model
+Mean Absolute Error (MAE): 9135.25
+R2 Score: 0.1241
 
-Task 5 – Train the Model:
-  - LinearRegression model fitted on training set.
-  - Slope (Coefficient): 240.59
-  - Intercept: 3606.05
-  - Regression Equation: Charges = (240.59 * Age) + 3606.05
 
-Task 6 – Make Predictions:
-  - Predicted charges on the 268 test samples.
-  - Comparison table generated showing Actual vs. Predicted values and Error.
-
-Task 7 – Evaluate the Model:
-  - Simple Linear Regression (Age only):
-      * Mean Absolute Error (MAE): $9,135.25
-      * Root Mean Squared Error (RMSE): $11,586.11
-      * R² Score: 0.1241 (~12.4% variance explained)
-  - Multiple Linear Regression (All features):
-      * Mean Absolute Error (MAE): $4,181.19
-      * Root Mean Squared Error (RMSE): $5,796.28
-      * R² Score: 0.7836 (~78.4% variance explained)
-
---------------------------------------------------------------------------------
-ANSWERS TO FINAL QUESTIONS
---------------------------------------------------------------------------------
+Final Questions:
 
 1. Does insurance cost increase with age?
-   Yes. The scatter plot and positive slope coefficient (b1 = 240.59) confirm that insurance charges increase consistently with age. On average, each additional year of age increases annual charges by approximately $240.
+Yes, it definitely does. Both the scatter plot and the positive slope (about 240) show that older people pay more for insurance. On average, each extra year of age adds about 240 dollars to the cost.
 
 2. Which features might influence insurance charges?
-   In addition to Age, the key features influencing charges are:
-   - Smoker status (the single largest contributor to high healthcare expenses)
-   - BMI (Body Mass Index - obesity combined with smoking creates the highest costs)
-   - Number of children/dependents
-   - Region
+Besides age, whether a person smokes or not has a huge effect on the price. Other things like their BMI (weight/health), the number of children they have, and their region also influence the cost.
 
 3. How close are the predicted values to the actual values?
-   - For the Simple Linear Regression model (Age only), predictions follow the baseline upward slope but have an average error of ~$9,135 because single-variable regression cannot account for smoking or BMI.
-   - For Multiple Linear Regression (all features), predictions are significantly closer, with an average error of ~$4,181 and an R² of ~0.78.
+They follow the general upward line, but they are not very close for individual people. The MAE is around 9,135 dollars, so the predictions are off by a fair amount. This happens because the model only looks at age and has no idea whether someone is a smoker or has a high BMI.
 
 4. Is your model performing reasonably well? Explain briefly.
-   - The Age-only model captures the general age trend but only explains ~12.4% of total variance due to missing key risk factors.
-   - The Multiple Linear Regression model performs reasonably well, explaining ~78.4% of the variance (R² = 0.7836), making it a reliable predictive tool.
+It gives a good basic baseline to see the age trend, but an R2 of 0.12 means age only explains about 12% of the variation in price. It needs other features like smoker status and BMI to become really accurate.
 
 5. Where can this model be used in real life?
-   - Health Insurance Underwriting: Automating actuarial premium rate calculations based on customer risk profiles.
-   - Healthcare Financial Planning: Assisting families in estimating future medical coverage expenses as they age.
-   - Insurance Reserve Allocation: Helping insurance providers forecast aggregate future claim liabilities.
+An insurance company can use it as a simple baseline tool to give quick initial price estimates based on age, and customers can use it to get an idea of how their insurance expenses will go up as they get older.
