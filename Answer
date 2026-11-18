@@ -1,0 +1,77 @@
+================================================================================
+STUDENT HANDS-ON ASSIGNMENT: REGRESSION MODEL – MEDICAL INSURANCE COST PREDICTION
+================================================================================
+
+DATASET: Medical Cost Personal Dataset (insurance.csv)
+MODEL: Linear Regression
+EVALUATION: 25 Marks
+
+--------------------------------------------------------------------------------
+TASK SUMMARY & RESULTS
+--------------------------------------------------------------------------------
+
+Task 1 – Load the Dataset:
+  - Loaded using Pandas.
+  - Shape: 1,338 rows, 7 columns.
+  - Columns: age, sex, bmi, children, smoker, region, charges.
+
+Task 2 – Identify Variables:
+  - Target Variable (Y): charges (Continuous medical insurance charges in USD)
+  - Input Feature (X): age (for Simple Linear Regression)
+  - Additional Features: bmi, children, sex, smoker, region (for Multiple Linear Regression)
+
+Task 3 – Data Visualization:
+  - Scatter plot generated: Age vs. Insurance Charges.
+  - Observation: As age increases, baseline insurance charges increase steadily. Three distinct cost tiers are visible, corresponding to other risk factors (smoker status, BMI).
+
+Task 4 – Split the Data:
+  - 80% Training Data: 1,070 samples.
+  - 20% Testing Data: 268 samples.
+  - test_size=0.2, random_state=42.
+
+Task 5 – Train the Model:
+  - LinearRegression model fitted on training set.
+  - Slope (Coefficient): 240.59
+  - Intercept: 3606.05
+  - Regression Equation: Charges = (240.59 * Age) + 3606.05
+
+Task 6 – Make Predictions:
+  - Predicted charges on the 268 test samples.
+  - Comparison table generated showing Actual vs. Predicted values and Error.
+
+Task 7 – Evaluate the Model:
+  - Simple Linear Regression (Age only):
+      * Mean Absolute Error (MAE): $9,135.25
+      * Root Mean Squared Error (RMSE): $11,586.11
+      * R² Score: 0.1241 (~12.4% variance explained)
+  - Multiple Linear Regression (All features):
+      * Mean Absolute Error (MAE): $4,181.19
+      * Root Mean Squared Error (RMSE): $5,796.28
+      * R² Score: 0.7836 (~78.4% variance explained)
+
+--------------------------------------------------------------------------------
+ANSWERS TO FINAL QUESTIONS
+--------------------------------------------------------------------------------
+
+1. Does insurance cost increase with age?
+   Yes. The scatter plot and positive slope coefficient (b1 = 240.59) confirm that insurance charges increase consistently with age. On average, each additional year of age increases annual charges by approximately $240.
+
+2. Which features might influence insurance charges?
+   In addition to Age, the key features influencing charges are:
+   - Smoker status (the single largest contributor to high healthcare expenses)
+   - BMI (Body Mass Index - obesity combined with smoking creates the highest costs)
+   - Number of children/dependents
+   - Region
+
+3. How close are the predicted values to the actual values?
+   - For the Simple Linear Regression model (Age only), predictions follow the baseline upward slope but have an average error of ~$9,135 because single-variable regression cannot account for smoking or BMI.
+   - For Multiple Linear Regression (all features), predictions are significantly closer, with an average error of ~$4,181 and an R² of ~0.78.
+
+4. Is your model performing reasonably well? Explain briefly.
+   - The Age-only model captures the general age trend but only explains ~12.4% of total variance due to missing key risk factors.
+   - The Multiple Linear Regression model performs reasonably well, explaining ~78.4% of the variance (R² = 0.7836), making it a reliable predictive tool.
+
+5. Where can this model be used in real life?
+   - Health Insurance Underwriting: Automating actuarial premium rate calculations based on customer risk profiles.
+   - Healthcare Financial Planning: Assisting families in estimating future medical coverage expenses as they age.
+   - Insurance Reserve Allocation: Helping insurance providers forecast aggregate future claim liabilities.
